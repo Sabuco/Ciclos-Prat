@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,9 +59,27 @@ class Producto
 
     /**
      * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="productos")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
 
-    private $client;
+    private $clients;
+
+    /**
+     * @return mixed
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * @param mixed $clients
+     */
+    public function setClients($clients)
+    {
+        $this->clients = $clients;
+    }
+
 
     public function getId()
     {

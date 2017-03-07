@@ -45,12 +45,13 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Producto", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Producto", mappedBy="clients")
      */
     private $productos;
 
     public function __construct()
     {
+        $this->productos = new ArrayCollection();
         parent::__construct();
 
         $this->createdAt    = new \DateTime();
