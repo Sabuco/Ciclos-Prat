@@ -4,3 +4,8 @@ user:
 app.index:
     resource: "@AppBundle/Controller/IndexController.php"
     type: annotation
+
+app.product:
+    resource: "@AppBundle/Controller/ProductoController.php"
+    type: annotation
+    prefix: /indice

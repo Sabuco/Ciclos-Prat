@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Productos {% endblock %}
+
+{% block body %}
+
+    <h1> Insertar Producto </h1>
+
+    <form method="post" action="{{ path('app_producto_doInsert') }}">
+        Nombre: <input type="text" name="name" /> </br>
+        Descripcion: <input type="text" name="description" /> </br>
+        Cantidad: <input type="number" name="stock" /> </br>
+        Precio: <input type="number" name="price" /> </br>
+        <input type= "submit" value="Insertar"/>
+    </form>
+
+{% endblock %}

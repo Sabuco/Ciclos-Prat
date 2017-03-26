@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Trascastro\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

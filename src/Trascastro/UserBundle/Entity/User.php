@@ -46,6 +46,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Producto", mappedBy="clients")
+     * @ORM\Column(name="productos", type="string", nullable=true)
      */
     private $productos;
 
