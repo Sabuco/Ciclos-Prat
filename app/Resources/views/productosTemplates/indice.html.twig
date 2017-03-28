@@ -14,9 +14,10 @@
                         Cantidad:       {{ Producto.stock }}<br>
                         Precio:         {{ Producto.price }}€<br>
 
-
-                    <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
-                    <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
+                    {% if app.user == Producto.clients or app.user.username == "Sabuco" %}
+                        <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
+                        <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
+                    {% endif %}
                 </div>
             </div>
 
