@@ -4,14 +4,7 @@
     <div>
         <form method="post" action="{{ action }}" novalidate="novalidate">
             <div>
-                <!-- form is based on User Entity -->
-                {{ dump(form.vars.value) }}
-                <!-- http://stackoverflow.com/questions/12497133/directly-access-a-form-fields-value-when-overriding-widget-in-a-twig-template -->
-                <ul>
-                    {% for error in form.vars.errors %}
-                        <li>{{ error.message }}</li>
-                    {% endfor %}
-                </ul>
+
             </div>
 
             <div>{{ form_errors(form.name) }}{{ form_label(form.name) }}: {{ form_widget(form.name) }}</div>
