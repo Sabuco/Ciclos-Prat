@@ -4,24 +4,25 @@
     <h1>Productos publicados</h1>
         {% for Producto in productos %}
             <div class="panel panel-default">
-            <div class="panel-body">
-            <p>
-                Nº Producto:    {{ Producto.id }}<br>
-                Vendedor:       {{ Producto.clients }}<br>
-                Producto:         {{ Producto.name }}<br>
-                Descripcion:    {{ Producto.description }}<br>
-                Cantidad:       {{ Producto.stock }}<br>
-                Precio:         {{ Producto.price }}<br>
-            </p>
+                <div class="panel-body">
 
-            <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
-            <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
-            </div>
+                        <h3 style="margin-top: 0px;">{{ Producto.name }}</h3>
+                        Nº Producto:    {{ Producto.id }}<br>
+                        Vendedor:       {{ Producto.clients }}<br>
+
+                        Descripcion:    {{ Producto.description }}<br>
+                        Cantidad:       {{ Producto.stock }}<br>
+                        Precio:         {{ Producto.price }}€<br>
+
+
+                    <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
+                    <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
+                </div>
             </div>
 
             <br><br>
         {% endfor %}
         <div>
-            <a href="{{ path('app_producto_insert') }}">Añadir nuevo producto</a>
+            <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir nuevo producto</a>
         </div>
     {% endblock %}
