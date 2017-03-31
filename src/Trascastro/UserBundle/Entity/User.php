@@ -50,9 +50,17 @@ class User extends BaseUser
      */
     private $productos;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="usuario")
+     * @ORM\Column(name="comentario", type="string", nullable=true)
+     */
+    private $comentario;
+
     public function __construct()
     {
         $this->productos = new ArrayCollection();
+        $this->comentario = new ArrayCollection();
         parent::__construct();
 
         $this->createdAt    = new \DateTime();
