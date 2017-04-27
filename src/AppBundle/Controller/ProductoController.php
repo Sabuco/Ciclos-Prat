@@ -9,8 +9,11 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Form\ComentarioType;
+use AppBundle\Form\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Producto;
 use AppBundle\Form\ProductoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,12 +29,15 @@ class ProductoController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $repo = $m->getRepository('AppBundle:Producto');
+        $repositorio = $m->getRepository('AppBundle:Comentario');
 
         $m->flush();
         $productos = $repo->findAll();
+        $comentarios = $repositorio->findAll();
         return $this->render(':productosTemplates:indice.html.twig',
             [
                 'productos' => $productos,
+                'comentarios' => $comentarios,
             ]);
     }
 
@@ -141,6 +147,122 @@ class ProductoController extends Controller
 
         $Producto = $repo->find($id);
         $m->remove($Producto);
+        $m->flush();
+
+        $this->addFlash('messages', 'Producto borrado');
+
+        return $this->redirectToRoute('app_index_index');
+
+    }
+
+    //---------------------Comentarios-------------------------
+
+    /**
+     * @Route(path="/add", name="app_comentario_add")
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function addAction()
+    {
+        $Comentario = new Comentario();
+        $form = $this->createForm(ComentarioType::class, $Comentario);
+        return $this->render(':comentarios:update.html.twig',
+            [
+                'form'      => $form->createView(),
+                'action'    => $this->generateUrl('app_comentario_doAdd')
+            ]
+        );
+
+
+    }
+
+
+    /**
+     * @Route (path="/doAdd", name="app_comentario_doAdd")
+     */
+    public function doAddAction(Request $request)
+    {
+        $Comentario = new Comentario();
+        $form = $this->createForm(ComentarioType::class, $Comentario);
+
+        $form->handleRequest($request);
+
+        if($form->isValid())
+        {
+            $id = $request
+            $user = $this->getUser();
+            $Comentario->setUsuario($user);
+            $m = $this->getDoctrine()->getManager();
+            $m->persist($Comentario);
+            $m->flush();
+
+            return $this->redirectToRoute('app_index_index');
+        }
+
+        return $this->render(':comentarios:update.html.twig',
+            [
+                'form' => $form->createView(),
+                'action' => $this->generateUrl('app_comentario_doAdd')
+            ]);
+    }
+
+    /**
+     * @Route(path="/updatecomentario/{id}", name="app_comentario_update")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function updateeAction($id)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repositorio = $m->getRepository('AppBundle:Comentario');
+        $Comentario = $repositorio->find($id);
+        $form = $this->createForm(ComentarioType::class, $Comentario);
+        return $this->render(':comentarios:update.html.twig',
+            [
+                'form' => $form->CreateView(),
+                'action' => $this->generateUrl('app_comentario_doUpdate', ['id' => $id]),
+            ]);
+    }
+
+    /**
+     * @Route(path="/doUpdatecomentario/{id}", name="app_comentario_doUpdate")
+     * @Security("has_role('ROLE_USER')")
+     */
+
+    public function doUpdatee($id, Request $request)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repo = $m->getRepository('AppBundle:Comentario');
+        $Comentario = $repo->find($id);
+        $form = $this->createForm(ComentarioType::class, $Comentario);
+        $form->handleRequest($request);
+
+
+        if($form->isValid()){
+            $m->flush();
+            return $this->redirectToRoute('app_index_index');
+        }
+
+
+        return $this->render(':comentarios:update.html.twig',
+            [
+                'form' => $form->createView(),
+                'action' => $this->generateUrl('app_comentario_doUpdate', ['id' => $id]),
+            ]);
+    }
+
+
+    /**
+     * @Route(path="/removecomentario/{id}", name="app_comentario_remove")
+     * @Security("has_role('ROLE_USER')")
+     */
+
+    public function removeeAction($id)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $repo = $m->getRepository('AppBundle:Comentario');
+
+        $Comentario = $repo->find($id);
+        $m->remove($Comentario);
         $m->flush();
 
         $this->addFlash('messages', 'Producto borrado');

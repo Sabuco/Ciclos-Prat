@@ -55,6 +55,24 @@ class Comentario
      */
     private $usuario;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Producto", inversedBy="comentario")
+     */
+    private $producto;
+
+    /**
+     * Comentario constructor.
+     * @param \DateTime $createdAt
+     * @param \DateTime $updatedAt
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+
     /**
      * @return mixed
      */
@@ -81,6 +99,24 @@ class Comentario
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+    /**
+     * @param mixed $producto
+     */
+    public function setProducto($producto)
+    {
+        $this->producto = $producto;
+    }
+
+
 
     /**
      * Set titulo

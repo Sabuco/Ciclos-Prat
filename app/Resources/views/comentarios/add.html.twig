@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Productos {% endblock %}
+
+{% block body %}
+
+    <h1> Deja tu comentario </h1>
+
+    <form method="post" action="{{ path('app_comentario_doAdd') }}">
+        <input type="text" name="titulo" placeholder="Titulo"/> </br>
+        <input type="text" name="contenido" placeholder="Pon aqui tu reseña..."/> </br>
+
+
+        <input type= "submit" value="Comentar"/>
+    </form>
+
+{% endblock %}

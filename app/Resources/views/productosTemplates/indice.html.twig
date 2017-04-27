@@ -18,7 +18,24 @@
                         <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
                         <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
                     {% endif %}
+                    {% for Comentario in comentarios %}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Id_comentario:       {{ Comentario.id }}<br>
+                                <h3 style="margin-top: 0px;">{{ Comentario.titulo }}</h3>
+
+                                Comentario:    {{ Comentario.contenido }}<br>
+
+
+                                {% if app.user == Comentario.usuario or app.user.username == "Sabuco" %}
+                                    <a href="{{ path('app_comentario_update', {'id' : Comentario.id}) }}">Editar&nbsp;</a>
+                                    <a href="{{ path('app_comentario_remove', {'id' : Comentario.id}) }}">Borrar</a>
+                                {% endif %}
+                    {% endfor %}
+
+
                 </div>
+            <a href="{{ path('app_comentario_add', {'id' : Producto.id })}}">➕  Añadir comentario</a>
             </div>
 
             <br><br>

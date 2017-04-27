@@ -57,13 +57,22 @@ class Producto
      *
      * @return int
      */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="productos")
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="producto")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
 
     private $clients;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="productos")
+     */
+    private $comentario;
 
     /**
      * @return mixed
@@ -81,11 +90,26 @@ class Producto
         $this->clients = $clients;
     }
 
-
-    public function getId()
+    /**
+     * @return mixed
+     */
+    public function getComentario()
     {
-        return $this->id;
+        return $this->comentario;
     }
+
+    /**
+     * @param mixed $comentario
+     */
+    public function setComentario($comentario)
+    {
+        $this->comentario = $comentario;
+    }
+
+
+
+
+
 
     /**
      * Set name

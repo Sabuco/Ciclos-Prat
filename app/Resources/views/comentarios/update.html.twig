@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div>
+        <form method="post" action="{{ action }}" novalidate="novalidate">
+            <div>
+
+            </div>
+
+
+            <div>{{ form_errors(form.titulo) }}{{ form_label(form.titulo) }}: {{ form_widget(form.titulo) }}</div>
+            <div>{{ form_label(form.contenido) }}: {{ form_widget(form.contenido) }}</div>
+
+            {{ form_rest(form) }}
+
+
+            <div><input type="submit" value="Guardar"></div>
+        </form>
+    </div>
+{% endblock %}
