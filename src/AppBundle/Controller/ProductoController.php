@@ -189,7 +189,7 @@ class ProductoController extends Controller
 
         if($form->isValid())
         {
-            $id = $request
+
             $user = $this->getUser();
             $Comentario->setUsuario($user);
             $m = $this->getDoctrine()->getManager();
@@ -265,7 +265,7 @@ class ProductoController extends Controller
         $m->remove($Comentario);
         $m->flush();
 
-        $this->addFlash('messages', 'Producto borrado');
+        $this->addFlash('messages', 'Comentario borrado');
 
         return $this->redirectToRoute('app_index_index');
 

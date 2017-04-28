@@ -63,7 +63,7 @@ class Producto
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="producto")
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="productos")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
 
