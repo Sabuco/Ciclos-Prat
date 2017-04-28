@@ -18,7 +18,7 @@
                         <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
                         <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
                     {% endif %}
-                    <div class="panel panel-default">
+
                     <div class="panel-body">
                     {% for Comentario in comentarios %}
 
@@ -35,14 +35,16 @@
                     {% endfor %}
 
 
-                </div>
+
             <a href="{{ path('app_comentario_add', {'id' : Producto.id })}}">➕  Añadir comentario</a>
             </div>
 
 
             <br><br>
+            </div>
+            </div>
         {% endfor %}
         <div>
             <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir nuevo producto</a>
         </div>
-    {% endblock %}
+{% endblock %}
