@@ -20,17 +20,17 @@
                     {% endif %}
 
                     <div class="panel-body">
-                    {% for Comentario in comentarios %}
+                    {% for comentario in Producto.getComentario %}
 
                                 <hr>
-                                <h3 style="margin-top: 0px;">{{ Comentario.titulo }}</h3>
-                                Id_comentario:  {{ Comentario.id }}<br>
-                                Comentario:     {{ Comentario.contenido }}<br>
+                                <h3 style="margin-top: 0px;">{{ comentario.titulo }}</h3>
+                                Id_comentario:  {{ comentario.id }}<br>
+                                Comentario:     {{ comentario.contenido }}<br>
 
 
-                                {% if app.user == Comentario.usuario or app.user.username == "Sabuco" %}
-                                    <a href="{{ path('app_comentario_update', {'id' : Comentario.id}) }}">Editar&nbsp;</a>
-                                    <a href="{{ path('app_comentario_remove', {'id' : Comentario.id}) }}">Borrar</a>
+                                {% if app.user == comentario.usuario or app.user.username == "Sabuco" %}
+                                    <a href="{{ path('app_comentario_update', {'id' : comentario.id}) }}">Editar&nbsp;</a>
+                                    <a href="{{ path('app_comentario_remove', {'id' : comentario.id}) }}">Borrar</a>
                                 {% endif %}
                     {% endfor %}
 

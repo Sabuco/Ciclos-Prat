@@ -70,7 +70,7 @@ class Producto
     private $clients;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="productos")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="producto")
      */
     private $comentario;
 

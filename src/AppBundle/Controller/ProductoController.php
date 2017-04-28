@@ -29,15 +29,13 @@ class ProductoController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $repo = $m->getRepository('AppBundle:Producto');
-        $repositorio = $m->getRepository('AppBundle:Comentario');
+
 
         $m->flush();
         $productos = $repo->findAll();
-        $comentarios = $repositorio->findAll();
         return $this->render(':productosTemplates:indice.html.twig',
             [
-                'productos' => $productos,
-                'comentarios' => $comentarios,
+                'productos' => $productos
             ]);
     }
 
@@ -158,18 +156,19 @@ class ProductoController extends Controller
     //---------------------Comentarios-------------------------
 
     /**
-     * @Route(path="/add", name="app_comentario_add")
+     * @Route(path="/add/{id}", name="app_comentario_add")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_USER')")
      *
      */
-    public function addAction()
+    public function addAction($id)
     {
         $Comentario = new Comentario();
         $form = $this->createForm(ComentarioType::class, $Comentario);
         return $this->render(':comentarios:update.html.twig',
             [
                 'form'      => $form->createView(),
-                'action'    => $this->generateUrl('app_comentario_doAdd')
+                'action'    => $this->generateUrl('app_comentario_doAdd', ['id' => $id])
             ]
         );
 
@@ -178,12 +177,21 @@ class ProductoController extends Controller
 
 
     /**
-     * @Route (path="/doAdd", name="app_comentario_doAdd")
+     * @Route (path="/doAdd/{id}", name="app_comentario_doAdd")
+     * @Security("has_role('ROLE_USER')")
      */
-    public function doAddAction(Request $request)
+    public function doAddAction(Request $request, Producto $id)
     {
+        $m = $this->getDoctrine()->getManager();
+        $r = $m->getRepository('AppBundle:Producto');
+        $producto = $r->find($id);
+
+
         $Comentario = new Comentario();
         $form = $this->createForm(ComentarioType::class, $Comentario);
+
+
+        $Comentario->setProducto($producto);
 
         $form->handleRequest($request);
 
@@ -202,7 +210,7 @@ class ProductoController extends Controller
         return $this->render(':comentarios:update.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_comentario_doAdd')
+                'action' => $this->generateUrl('app_comentario_doAdd', ['id' => $id])
             ]);
     }
 
