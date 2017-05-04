@@ -78,7 +78,7 @@ class ProductoController extends Controller
             $m->persist($Producto);
             $m->flush();
 
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_producto_indice');
         }
 
         return $this->render(':productosTemplates:formulario.html.twig',
@@ -121,7 +121,7 @@ class ProductoController extends Controller
 
         if($form->isValid()){
             $m->flush();
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_producto_indice');
         }
 
 
@@ -149,7 +149,7 @@ class ProductoController extends Controller
 
         $this->addFlash('messages', 'Producto borrado');
 
-        return $this->redirectToRoute('app_index_index');
+        return $this->redirectToRoute('app_producto_indice');
 
     }
 
@@ -204,7 +204,7 @@ class ProductoController extends Controller
             $m->persist($Comentario);
             $m->flush();
 
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_producto_indice');
         }
 
         return $this->render(':comentarios:update.html.twig',
@@ -247,7 +247,7 @@ class ProductoController extends Controller
 
         if($form->isValid()){
             $m->flush();
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_producto_indice');
         }
 
 
@@ -275,7 +275,7 @@ class ProductoController extends Controller
 
         $this->addFlash('messages', 'Comentario borrado');
 
-        return $this->redirectToRoute('app_index_index');
+        return $this->redirectToRoute('app_producto_indice');
 
     }
 }
