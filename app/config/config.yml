@@ -61,3 +61,4 @@ swiftmailer:
     password:  "%mailer_password%"
     #disable spool when using gmail
     #spool:     { type: memory }
+
