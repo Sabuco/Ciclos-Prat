@@ -3,14 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
 use Trascastro\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Producto
  *
  * @ORM\Table(name="producto")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
+ * @Vich\Uploadable
  */
 class Producto
 {
@@ -33,6 +37,15 @@ class Producto
     /**
      * @var string
      *
+     * @ORM\Column(name="imagen", type="string", length=255)
+     */
+    private $imagen;
+
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -51,6 +64,40 @@ class Producto
      */
     private $price;
 
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="accesorios_image", fileNameProperty="imagen")
+     */
+    private $imageFile;
+
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Producto
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 
     /**
      * Get id
@@ -68,6 +115,8 @@ class Producto
      */
 
     private $clients;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="producto")
@@ -91,6 +140,25 @@ class Producto
     }
 
     /**
+     * @return string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * @param string $imagen
+     * @return Producto
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getComentario()
@@ -105,10 +173,6 @@ class Producto
     {
         $this->comentario = $comentario;
     }
-
-
-
-
 
 
     /**
@@ -206,5 +270,22 @@ class Producto
     {
         return $this->price;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+    }
+
 }
 

@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductoType extends AbstractType
 {
@@ -25,6 +26,12 @@ class ProductoType extends AbstractType
             ->add('description')
             ->add('stock')
             ->add('price', IntegerType::class)
+            ->add('imagen')
+            ->add('imageFile', VichImageType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_link' => true, // not mandatory, default is true
+            ])
             ;
     }
 

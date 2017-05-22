@@ -55,6 +55,14 @@
     </div>
 </nav>
 
+<ul class="nav nav-tabs nav-justified">
+    <li class="active"><a href="{{ path('app_index_index') }}">Inicio</a></li>
+    <li><a href="#">Bicicletas</a></li>
+    <li><a href="{{ path('app_producto_indice') }}">Accesorios</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contacto</a></li>
+</ul>
+
 <div class="container">
     <ul>
         {% for message in app.session.flashBag.get('messages') %}

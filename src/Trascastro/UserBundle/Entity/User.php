@@ -57,6 +57,8 @@ class User extends BaseUser
      */
     private $comentario;
 
+
+
     public function __construct()
     {
         $this->productos = new ArrayCollection();
@@ -109,4 +111,7 @@ class User extends BaseUser
     {
         return $this->username;
     }
+
+
+
 }

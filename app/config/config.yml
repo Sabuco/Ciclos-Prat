@@ -62,3 +62,10 @@ swiftmailer:
     #disable spool when using gmail
     #spool:     { type: memory }
 
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        accesorios_image:
+            uri_prefix: /images/galeria
+            upload_destination: '%kernel.root_dir%/../web/images/galeria'
