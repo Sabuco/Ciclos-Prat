@@ -1,0 +1,9 @@
+
+{% block body %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(productos) }}
+        </div>
+    {% endif %}
+{% endblock %}

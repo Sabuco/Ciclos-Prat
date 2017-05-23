@@ -25,18 +25,35 @@ class ProductoController extends Controller
      * @Route(path="/", name="app_producto_indice")
      *
      */
-    public function indiceAction()
+    public function indiceAction(Request $request)
     {
         $m = $this->getDoctrine()->getManager();
         $repo = $m->getRepository('AppBundle:Producto');
 
 
         $m->flush();
-        $productos = $repo->findAll();
+        $queryProductos = $repo->findAll();
+
+        /*$m = $this->getDoctrine()->getManager();
+        $articleRepo = $m->getRepository('AppBundle:Article');
+        // $articles = $articleRepo->findAll() ---> Does lazy loading and it produces extra queries from the templates
+        $query = $articleRepo->queryAllArticles(); */
+
+        $paginator = $this->get('knp_paginator');
+        $productos = $paginator->paginate(
+            $queryProductos,
+            $request->query->getInt('page', 1),
+            Producto::PAGINATION_ITEMS,
+            [
+                'wrap-queries' => true, // https://github.com/KnpLabs/knp-components/blob/master/doc/pager/config.md
+            ]
+        );
         return $this->render(':productosTemplates:indice.html.twig',
             [
                 'productos' => $productos
             ]);
+
+
     }
 
 

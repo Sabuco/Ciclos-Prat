@@ -69,3 +69,13 @@ vich_uploader:
         accesorios_image:
             uri_prefix: /images/galeria
             upload_destination: '%kernel.root_dir%/../web/images/galeria'
+
+knp_paginator:
+    page_range: 2                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
