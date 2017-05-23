@@ -9,3 +9,8 @@ app.product:
     resource: "@AppBundle/Controller/ProductoController.php"
     type: annotation
     prefix: /indice
+
+app.product:
+    resource: "@AppBundle/Controller/BicicletaController.php"
+    type: annotation
+    prefix: /bicicletas

@@ -8,8 +8,8 @@
 
                         <h3 style="margin-top: 0px;">{{ Producto.name }}</h3>
                         <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" >
-                        Nº Producto:    {{ Producto.id }}<br>
-                        Vendedor:       {{ Producto.clients }}<br>
+                        <!--Nº Producto:    {{ Producto.id }}<br>-->
+                        <!--Vendedor:       {{ Producto.clients }}<br>-->
 
                         Descripcion:    {{ Producto.description }}<br>
                         Cantidad:       {{ Producto.stock }}<br>
@@ -21,6 +21,8 @@
                         <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
                     {% endif %}
 
+
+                    <!--
                     <div class="panel-body">
                     {% for comentario in Producto.getComentario %}
 
@@ -39,15 +41,20 @@
 
 
             <a href="{{ path('app_comentario_add', {'id' : Producto.id })}}">➕  Añadir comentario</a>
+
             </div>
+            -->
 
 
             <br><br>
             </div>
             </div>
         {% endfor %}
+
+    {% if app.user.username == "Sabuco" %}
         <div>
             <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir accesorio</a>
         </div>
-    {% include ':productosTemplates:pagination.html.twig' %}
+    {% endif %}
+    <div style="align-content: center;">{% include ':productosTemplates:pagination.html.twig' %}</div>
 {% endblock %}

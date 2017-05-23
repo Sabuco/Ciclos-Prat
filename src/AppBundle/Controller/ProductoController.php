@@ -34,10 +34,7 @@ class ProductoController extends Controller
         $m->flush();
         $queryProductos = $repo->findAll();
 
-        /*$m = $this->getDoctrine()->getManager();
-        $articleRepo = $m->getRepository('AppBundle:Article');
-        // $articles = $articleRepo->findAll() ---> Does lazy loading and it produces extra queries from the templates
-        $query = $articleRepo->queryAllArticles(); */
+
 
         $paginator = $this->get('knp_paginator');
         $productos = $paginator->paginate(
@@ -49,6 +46,7 @@ class ProductoController extends Controller
             ]
         );
         return $this->render(':productosTemplates:indice.html.twig',
+
             [
                 'productos' => $productos
             ]);
