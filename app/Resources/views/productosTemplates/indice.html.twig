@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Productos publicados</h1>
+    <h1>Accesorios</h1>
         {% for Producto in productos %}
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -47,6 +47,6 @@
             </div>
         {% endfor %}
         <div>
-            <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir nuevo producto</a>
+            <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir accesorio</a>
         </div>
 {% endblock %}
