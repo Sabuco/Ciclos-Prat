@@ -29,4 +29,9 @@
             <a class="btn btn-success" href="{{ path('app_bicicleta_insert') }}" role="button">➕  Añadir bicicleta</a>
         </div>
     {% endif %}
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(bicicletas) }}
+        </div>
+    {% endif %}
 {% endblock %}
