@@ -23,10 +23,10 @@ class BicicletaType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('description')
+            ->add('descripcion')
             ->add('stock')
             ->add('price', IntegerType::class)
-            ->add('imagen')
+            ->add('img')
             ->add('imageFile', VichImageType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true

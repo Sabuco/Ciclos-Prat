@@ -84,10 +84,9 @@ class BicicletaController extends Controller
 
         if($form->isValid())
         {
-            $user = $this->getUser();
-            $Producto->setClients($user);
+
             $m = $this->getDoctrine()->getManager();
-            $m->persist($Producto);
+            $m->persist($Bicicleta);
             $m->flush();
 
             return $this->redirectToRoute('app_bicicleta_listado');
@@ -118,50 +117,50 @@ class BicicletaController extends Controller
     }
 
     /**
-     * @Route(path="/doUpdate/{id}", name="app_producto_doUpdate")
+     * @Route(path="/doUpdate/{id}", name="app_bicicleta_doUpdate")
      * @Security("has_role('ROLE_USER')")
      */
 
     public function doUpdate($id, Request $request)
     {
         $m = $this->getDoctrine()->getManager();
-        $repo = $m->getRepository('AppBundle:Producto');
-        $Producto = $repo->find($id);
-        $form = $this->createForm(ProductoType::class, $Producto);
+        $repo = $m->getRepository('AppBundle:Bicicleta');
+        $Bicicleta = $repo->find($id);
+        $form = $this->createForm(BicicletaType::class, $Bicicleta);
         $form->handleRequest($request);
 
 
         if($form->isValid()){
             $m->flush();
-            return $this->redirectToRoute('app_producto_indice');
+            return $this->redirectToRoute('app_bicicleta_listado');
         }
 
 
-        return $this->render(':productosTemplates:formulario.html.twig',
+        return $this->render(':bicicletas:formulario.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_producto_doUpdate', ['id' => $id]),
+                'action' => $this->generateUrl('app_bicicleta_doUpdate', ['id' => $id]),
             ]);
     }
 
 
     /**
-     * @Route(path="/remove/{id}", name="app_producto_remove")
+     * @Route(path="/remove/{id}", name="app_bicicleta_remove")
      * @Security("has_role('ROLE_USER')")
      */
 
     public function removeAction($id)
     {
         $m = $this->getDoctrine()->getManager();
-        $repo = $m->getRepository('AppBundle:Producto');
+        $repo = $m->getRepository('AppBundle:Bicicleta');
 
-        $Producto = $repo->find($id);
-        $m->remove($Producto);
+        $Bicicleta = $repo->find($id);
+        $m->remove($Bicicleta);
         $m->flush();
 
-        $this->addFlash('messages', 'Producto borrado');
+        $this->addFlash('messages', 'Bicicleta borrada');
 
-        return $this->redirectToRoute('app_producto_indice');
+        return $this->redirectToRoute('app_bicicleta_listado');
 
     }
 }

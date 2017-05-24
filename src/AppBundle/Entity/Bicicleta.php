@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bicicleta
  *
  * @ORM\Table(name="bicicleta")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BicicletaRepository")
+ * @Vich\Uploadable
  */
 class Bicicleta
 {
@@ -37,6 +41,13 @@ class Bicicleta
      * @ORM\Column(name="img", type="string", length=255)
      */
     private $img;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="bicicletas_image", fileNameProperty="img")
+     */
+    private $imageFile;
 
     /**
      * @var string
@@ -189,5 +200,32 @@ class Bicicleta
     {
         return $this->price;
     }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Bicicleta
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
 }
 

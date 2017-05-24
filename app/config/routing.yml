@@ -10,7 +10,7 @@ app.product:
     type: annotation
     prefix: /indice
 
-app.product:
+app.bicicletas:
     resource: "@AppBundle/Controller/BicicletaController.php"
     type: annotation
     prefix: /bicicletas

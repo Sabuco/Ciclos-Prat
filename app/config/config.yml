@@ -69,6 +69,9 @@ vich_uploader:
         accesorios_image:
             uri_prefix: /images/galeria
             upload_destination: '%kernel.root_dir%/../web/images/galeria'
+        bicicletas_image:
+                    uri_prefix: /images/galeria
+                    upload_destination: '%kernel.root_dir%/../web/images/galeria'
 
 knp_paginator:
     page_range: 2                      # default page range used in pagination control
