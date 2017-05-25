@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class ProductoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function buscarTitulo($palabra) {
+        return $this->getEntityManager()
+
+        ->createQuery("SELECT prod from AppBundle:Producto prod 
+                      WHERE prod.name LIKE :palabra")->setParameter('palabra', '%'. $palabra. '%')->getResult();
+    }
 }

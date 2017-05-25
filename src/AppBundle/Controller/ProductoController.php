@@ -293,4 +293,37 @@ class ProductoController extends Controller
         return $this->redirectToRoute('app_producto_indice');
 
     }
+
+    //---------------------------------Buscador---------------------------------
+
+    /**
+     * @Route("/buscar", name="app_producto_buscar")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchAction(Request $request)
+    {
+        $busqueda = $_POST['busqueda'];
+
+        return $this->redirectToRoute('app_textoTitulo_show', ['palabra' => $busqueda]);
+
+    }
+
+
+    /**
+     * @Route("/textoPorTitulo/{palabra}", name="app_textoTitulo_show")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function textoPalabraAction($palabra, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $productos =$em->getRepository('AppBundle:Producto')->buscarTitulo($palabra);
+        return $this->render(':busqueda:busqueda.html.twig',
+            [
+                'productos' => $productos,
+            ]
+        );
+    }
+
+
 }

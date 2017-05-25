@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <a href="{{ path('app_producto_indice') }}">Volver</a> <br>
+
+    {% for Producto in productos %}
+        {{ include('busqueda/indiceProducto.html.twig', { 'Producto': Producto }) }}
+
+    {% endfor %}
+
+{% endblock %}
