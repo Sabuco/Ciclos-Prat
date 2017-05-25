@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <a href="{{ path('app_bicicleta_listado') }}">Volver</a> <br>
+
+    {% for Bicicleta in bicicletas %}
+        {{ include('busqueda/indiceBicicleta.html.twig', { 'Bicicleta': Bicicleta }) }}
+
+    {% endfor %}
+
+{% endblock %}

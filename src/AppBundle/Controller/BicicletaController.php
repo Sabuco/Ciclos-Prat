@@ -163,4 +163,35 @@ class BicicletaController extends Controller
         return $this->redirectToRoute('app_bicicleta_listado');
 
     }
+
+    //---------------------------------Buscador---------------------------------
+
+    /**
+     * @Route("/buscarBicicleta", name="app_bicicleta_buscar")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchAction(Request $request)
+    {
+        $busqueda = $_POST['busqueda'];
+
+        return $this->redirectToRoute('app_textoTitulo_show', ['palabra' => $busqueda]);
+
+    }
+
+
+    /**
+     * @Route("/busquedaPorTitulo/{palabra}", name="app_textoTitulo_show")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function textoPalabraAction($palabra, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bicicletas =$em->getRepository('AppBundle:Bicicleta')->buscarTitulo($palabra);
+        return $this->render(':busqueda:busquedaBicicleta.html.twig',
+            [
+                'bicicletas' => $bicicletas,
+            ]
+        );
+    }
 }

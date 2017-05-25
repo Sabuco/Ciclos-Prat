@@ -1,5 +1,13 @@
 {% extends '::base.html.twig' %}
 
+{% block sidebar %}
+    <form action="{{ path('app_bicicleta_buscar') }}" method="post">
+        <input type="text" name="busqueda" placeholder="Busqueda en bicicletas...">
+
+        <input type="submit">
+    </form>
+{% endblock %}
+
 {% block body %}
     <h1>Bicicletas</h1>
     {% for Bicicleta in bicicletas %}
