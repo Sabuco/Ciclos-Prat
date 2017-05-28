@@ -1,0 +1,8 @@
+{% block body %}
+
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(blogs) }}
+        </div>
+    {% endif %}
+{% endblock %}

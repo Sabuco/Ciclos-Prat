@@ -1,32 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Accesorios</h1>
-    {% for Producto in productos %}
+    <h1>Blog</h1>
+    {% for Blog in blogs %}
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <h3 style="margin-top: 0px;">{{ Producto.name }}</h3>
-                <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" >
-                Nº Producto:    {{ Producto.id }}<br>
-                Vendedor:       {{ Producto.clients }}<br>
+                <h3 style="margin-top: 0px;">{{ Blog.name }}</h3>
 
-                Descripcion:    {{ Producto.description }}<br>
-                Cantidad:       {{ Producto.stock }}<br>
-                Precio:         {{ Producto.price }}€<br>
+                Descripcion:    {{ Blog.description }}<br>
 
 
-                {% if app.user == Producto.clients or app.user.username == "Sabuco" %}
-                    <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
-                    <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
+
+
+                {% if app.user.username == "Sabuco" %}
+                    <a href="{{ path('app_blog_update', {'id' : Blog.id}) }}">Editar&nbsp;</a>
+                    <a href="{{ path('app_blog_remove', {'id' : Blog.id}) }}">Borrar</a>
                 {% endif %}
 
                 <div class="panel-body">
-                    {% for comentario in Producto.getComentario %}
+                    {% for comentario in Blog.getComentario %}
 
                         <hr>
                         <h3 style="margin-top: 0px;">{{ comentario.titulo }}</h3>
-                        Id_comentario:  {{ comentario.id }}<br>
+                        Usuario:  {{ comentario.usuario }}<br>
                         Comentario:     {{ comentario.contenido }}<br>
 
 
@@ -38,7 +35,7 @@
 
 
 
-                    <a href="{{ path('app_comentario_add', {'id' : Producto.id })}}">➕  Añadir comentario</a>
+                    <a href="{{ path('app_comentario_add', {'id' : Blog.id })}}">➕  Añadir comentario</a>
                 </div>
 
 
@@ -46,7 +43,10 @@
             </div>
         </div>
     {% endfor %}
-    <div>
-        <a class="btn btn-success" href="{{ path('app_producto_insert') }}" role="button">➕  Añadir accesorio</a>
-    </div>
+    {% if app.user.username == "Sabuco" %}
+        <div>
+            <a class="btn btn-success" href="{{ path('app_blog_insert') }}" role="button">➕  Añadir Post</a>
+        </div>
+    {% endif %}
+    <div>{% include ':blog:pagination.html.twig' %}</div>
 {% endblock %}

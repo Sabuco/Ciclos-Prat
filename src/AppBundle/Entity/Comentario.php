@@ -51,15 +51,16 @@ class Comentario
 
     /**
      * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="comentario")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
      */
     private $usuario;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Producto", inversedBy="comentario")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Blog", inversedBy="comentario")
+     * @ORM\JoinColumn(name="blog")
      */
-    private $producto;
+    private $blog;
 
     /**
      * Comentario constructor.
@@ -103,19 +104,18 @@ class Comentario
     /**
      * @return mixed
      */
-    public function getProducto()
+    public function getBlog()
     {
-        return $this->producto;
+        return $this->blog;
     }
 
     /**
-     * @param mixed $producto
+     * @param mixed $blog
      */
-    public function setProducto($producto)
+    public function setBlog($blog)
     {
-        $this->producto = $producto;
+        $this->blog = $blog;
     }
-
 
 
     /**

@@ -45,10 +45,10 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Producto", mappedBy="clients")
-     * @ORM\Column(name="productos", type="string", nullable=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Blog", mappedBy="clients")
+     * @ORM\Column(name="blogs", type="string", nullable=true)
      */
-    private $productos;
+    private $blogs;
 
 
     /**
@@ -61,7 +61,7 @@ class User extends BaseUser
 
     public function __construct()
     {
-        $this->productos = new ArrayCollection();
+        $this->blogs = new ArrayCollection();
         $this->comentario = new ArrayCollection();
         parent::__construct();
 

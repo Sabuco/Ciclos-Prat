@@ -115,35 +115,7 @@ class Producto
         return $this->id;
     }
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="productos")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
 
-    private $clients;
-
-
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="producto")
-     */
-    private $comentario;
-
-    /**
-     * @return mixed
-     */
-    public function getClients()
-    {
-        return $this->clients;
-    }
-
-    /**
-     * @param mixed $clients
-     */
-    public function setClients($clients)
-    {
-        $this->clients = $clients;
-    }
 
     /**
      * @return string
@@ -164,21 +136,6 @@ class Producto
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getComentario()
-    {
-        return $this->comentario;
-    }
-
-    /**
-     * @param mixed $comentario
-     */
-    public function setComentario($comentario)
-    {
-        $this->comentario = $comentario;
-    }
 
 
     /**

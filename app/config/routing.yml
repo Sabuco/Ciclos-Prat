@@ -14,3 +14,8 @@ app.bicicletas:
     resource: "@AppBundle/Controller/BicicletaController.php"
     type: annotation
     prefix: /bicicletas
+
+app.blog:
+    resource: "@AppBundle/Controller/BlogController.php"
+    type: annotation
+    prefix: /blog
