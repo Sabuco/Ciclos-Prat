@@ -11,13 +11,12 @@
     </form>
     <h1 class="textoBlanco">Accesorios</h1>
     <hr>
-    <div id="products" class="row list-group">
         {% for Producto in productos %}
 
 
             <div class="item  col-xs-4 col-lg-4">
                 <div class="thumbnail">
-                    <img class="group list-group-image" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" alt="" />
+                    <img class="group list-group-image" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" />
                     <div class="caption">
                         <h4 class="group inner list-group-item-heading">
                             {{ Producto.name }}</h4>
@@ -42,7 +41,7 @@
             </div>
 
         {% endfor %}
-    </div>
+
 
 
     {% if app.user.username == "Sabuco" %}
