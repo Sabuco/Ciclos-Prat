@@ -87,8 +87,7 @@ class ProductoController extends Controller
 
         if($form->isValid())
         {
-            $user = $this->getUser();
-            $Producto->setClients($user);
+
             $m = $this->getDoctrine()->getManager();
             $m->persist($Producto);
             $m->flush();
