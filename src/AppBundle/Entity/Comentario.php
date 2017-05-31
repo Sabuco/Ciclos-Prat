@@ -58,7 +58,7 @@ class Comentario
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Blog", inversedBy="comentario")
-     * @ORM\JoinColumn(name="blog")
+     * @ORM\JoinColumn(name="blog", referencedColumnName="id")
      */
     private $blog;
 

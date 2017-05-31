@@ -75,25 +75,23 @@
 <div class="container">
     <div class="margin-bottom-md"></div>
     <div class="row">
-        <div class="col-md-8 col-xs-8">
+        <div class="col-md-12 col-xs-12">
             {% block body %}{% endblock %}
         </div>
-        <div class="col-md-4 col-xs-4">
-            {% block sidebar %}
-                <!-- sidebar con el boton de HOME
-                <div class="container-fluid">
-                    <div class="row margin-bottom-md">
-                        <div class="col-md-12">
-                            <a class="btn btn-default" style="font-size:x-large;width: 100%" href="{{ path('app_index_index') }}">Home</a>
-                        </div>
-                    </div>
-                </div>
-                -->
-            {% endblock %}
-        </div>
+
     </div>
     <hr>
     <footer>
+        <p class="textoBlanco"><strong>Nuestras redes sociales: </strong></p>
+        <div class="col-md-4">
+            <a href="https://www.facebook.com/esciclosprat/"><img src="{{ asset('/images/upload/Facebook-Icono1.png') }}" style="width: 100px; height: 100px;"></a>
+        </div>
+        <div class="col-md-4">
+            <a href="https://www.milanuncios.com/tienda/ciclos-prat-3420.htm"><img src="{{ asset('/images/upload/icono-milanuncios.png') }}" style="width: 100px; height: 100px;"></a>
+        </div>
+        <div class="col-md-4">
+            <a href="https://es.wallapop.com/user/davidg-25287293"><img src="{{ asset('/images/upload/Wallapop-Icono.png') }} " style="width: 100px; height: 100px;"></a>
+        </div>
         <p class="text-right">&copy; 2017 Alvaro Garcia</p>
     </footer>
 </div> <!-- /container -->

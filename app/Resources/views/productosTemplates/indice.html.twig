@@ -1,41 +1,49 @@
 {% extends '::base.html.twig' %}
 
-{% block sidebar %}
-    <form action="{{ path('app_producto_buscar') }}" method="post">
+
+
+{% block body %}
+
+    <form action="{{ path('app_producto_buscar') }}" method="post" class="text-right">
         <input type="text" name="busqueda" placeholder="Busqueda en accesorios...">
 
         <input type="submit">
     </form>
-{% endblock %}
-
-{% block body %}
-    <h1>Accesorios</h1>
+    <h1 class="textoBlanco">Accesorios</h1>
+    <hr>
+    <div id="products" class="row list-group">
         {% for Producto in productos %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-
-                        <h3 style="margin-top: 0px;">{{ Producto.name }}</h3>
-                        <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" >
 
 
-                        Descripcion:    {{ Producto.description }}<br>
-                        Cantidad:       {{ Producto.stock }}<br>
-                        Precio:         {{ Producto.price }}€<br>
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" alt="" />
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                            {{ Producto.name }}</h4>
+                        <p class="group inner list-group-item-text">
+                            {{ Producto.description }}</p>
+                        <p class="group inner list-group-item-text">
+                            En stock: {{ Producto.stock }}</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    {{ Producto.price }}€</p>
+                            </div>
+                        </div>
+                        {% if app.user.username == "Sabuco" %}
+                            <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
+                            <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
+                        {% endif %}
+                    </div>
 
-
-                    {% if app.user.username == "Sabuco" %}
-                        <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
-                        <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
-                    {% endif %}
-
-
-
-
-
-            <br><br>
                 </div>
+
             </div>
+
         {% endfor %}
+    </div>
+
 
     {% if app.user.username == "Sabuco" %}
         <div>
