@@ -2,7 +2,7 @@
 
 
 {% block body %}
-    <a class="btn btn-success" href="{{ path('app_bicicleta_listado') }}">Volver</a> <br>
+    <p style="margin-bottom: 10px;"><a class="btn btn-success" href="{{ path('app_bicicleta_listado') }}">Volver</a></p> <br>
 
     {% for Bicicleta in bicicletas %}
         {{ include('busqueda/indiceBicicleta.html.twig', { 'Bicicleta': Bicicleta }) }}
