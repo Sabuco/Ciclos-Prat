@@ -19,6 +19,14 @@ class IndexController extends Controller
     }
 
     /**
+     * @Route("/Contacto", name="app_contacto_contacto")
+     */
+    public function contactoAction()
+    {
+        return $this->render(':Contacto:Contacto.html.twig');
+    }
+
+    /**
      * @Route("/upload", name="app_index_upload")
      */
     public function uploadAction(Request $request)
