@@ -179,20 +179,20 @@ class ProductoController extends Controller
     {
         $busqueda = $_POST['busqueda'];
 
-        return $this->redirectToRoute('app_textoTitulo_show', ['palabra' => $busqueda]);
+        return $this->redirectToRoute('app_textoTitulo_shoow', ['palabra' => $busqueda]);
 
     }
 
 
     /**
-     * @Route("/textoPorTitulo/{palabra}", name="app_textoTitulo_show")
+     * @Route("/textoPorTitulo/{palabra}", name="app_textoTitulo_shoow")
      * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
      */
     public function textoPalabraAction($palabra, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $productos =$em->getRepository('AppBundle:Producto')->buscarTitulo($palabra);
+        $productos =$em->getRepository('AppBundle:Producto')->buscarporTitulo($palabra);
         return $this->render(':busqueda:busqueda.html.twig',
             [
                 'productos' => $productos,

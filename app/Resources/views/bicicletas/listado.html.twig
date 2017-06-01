@@ -1,37 +1,49 @@
 {% extends '::base.html.twig' %}
 
 {% block sidebar %}
-    <form action="{{ path('app_bicicleta_buscar') }}" method="post">
+
+{% endblock %}
+
+{% block body %}
+    <form action="{{ path('app_bicicleta_buscar') }}" method="post" class="text-right">
         <input type="text" name="busqueda" placeholder="Busqueda en bicicletas...">
 
         <input type="submit">
     </form>
-{% endblock %}
-
-{% block body %}
-    <h1>Bicicletas</h1>
+    <h1 class="textoBlanco">Bicicletas</h1>
+    <hr>
+    <div id="products" class="row list-group">
     {% for Bicicleta in bicicletas %}
-        <div class="panel panel-default">
-            <div class="panel-body">
-
-                <h3 style="margin-top: 0px;">{{ Bicicleta.name }}</h3>
-                <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Bicicleta.img) }}" >
 
 
-                Descripcion:    {{ Bicicleta.descripcion }}<br>
-                Cantidad:       {{ Bicicleta.stock }}<br>
-                Precio:         {{ Bicicleta.price }}€<br>
 
-
-                {% if app.user.username == "Sabuco" %}
-                    <a href="{{ path('app_bicicleta_update', {'id' : Bicicleta.id}) }}">Editar&nbsp;</a>
-                    <a href="{{ path('app_bicicleta_remove', {'id' : Bicicleta.id}) }}">Borrar</a>
-                {% endif %}
-
-                <br><br>
+        <div class="item list-group-item col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{ asset('/images/galeria/' ~ Bicicleta.img) }}" style="width: 400px; height: 250px;"/>
+                <div class="caption">
+                    <h2 class="group inner list-group-item-heading">
+                        {{ Bicicleta.name }}</h2>
+                    <p class="group inner list-group-item-text">
+                        {{ Bicicleta.descripcion }}</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p></p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">{{ Bicicleta.price }}€</p>
+                        </div>
+                        {% if app.user.username == "Sabuco" %}
+                            <a href="{{ path('app_bicicleta_update', {'id' : Bicicleta.id}) }}">Editar&nbsp;</a>
+                            <a href="{{ path('app_bicicleta_remove', {'id' : Bicicleta.id}) }}">Borrar</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
+
         </div>
     {% endfor %}
+    </div>
+
     {% if app.user.username == "Sabuco" %}
         <div>
             <a class="btn btn-success" href="{{ path('app_bicicleta_insert') }}" role="button">➕  Añadir bicicleta</a>

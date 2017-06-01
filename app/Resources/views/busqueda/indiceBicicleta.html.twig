@@ -2,14 +2,18 @@
     <div class="panel panel-default">
         <div class="panel-body">
 
-            <h3 style="margin-top: 0px;">{{ Bicicleta.name }}</h3>
-            <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Bicicleta.img) }}" >
+            <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+            <img style="width: 400px; height: 250px;" src="{{ asset('/images/galeria/' ~ Bicicleta.img) }}" >
+            </div>
 
-
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                <h3 style="">{{ Bicicleta.name }}</h3>
             Descripcion:    {{ Bicicleta.descripcion }}<br>
-            Cantidad:       {{ Bicicleta.stock }}<br>
-            Precio:         {{ Bicicleta.price }}€<br>
 
+            Precio:         {{ Bicicleta.price }}€<br>
+                    </div>
+            </div>
 
             {% if app.user.username == "Sabuco" %}
                 <a href="{{ path('app_bicicleta_update', {'id' : Bicicleta.id}) }}">Editar&nbsp;</a>

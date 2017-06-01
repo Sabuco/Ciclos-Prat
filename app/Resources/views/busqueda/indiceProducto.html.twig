@@ -2,44 +2,23 @@
 <div class="panel panel-default">
     <div class="panel-body">
 
-        <h3 style="margin-top: 0px;">{{ Producto.name }}</h3>
-        <img style="width: 120px; height: 100px;" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" >
-        <!--Nº Producto:    {{ Producto.id }}<br>-->
-        <!--Vendedor:       {{ Producto.clients }}<br>-->
+        <div class="row">
 
-        Descripcion:    {{ Producto.description }}<br>
-        Cantidad:       {{ Producto.stock }}<br>
-        Precio:         {{ Producto.price }}€<br>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <img style="width: 400px; height: 250px;" src="{{ asset('/images/galeria/' ~ Producto.imagen) }}" >
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <h3>{{ Producto.name }}</h3>
+                Descripcion:    {{ Producto.description }}<br>
+                Cantidad:       {{ Producto.stock }}<br>
+                Precio:         {{ Producto.price }}€<br>
+            </div>
 
-
-        {% if app.user == Producto.clients or app.user.username == "Sabuco" %}
+        </div>
+        {% if app.user.username == "Sabuco" %}
         <a href="{{ path('app_producto_update', {'id' : Producto.id}) }}">Editar&nbsp;</a>
         <a href="{{ path('app_producto_remove', {'id' : Producto.id}) }}">Borrar</a>
         {% endif %}
-
-
-        <!--
-        <div class="panel-body">
-        {% for comentario in Producto.getComentario %}
-
-                    <hr>
-                    <h3 style="margin-top: 0px;">{{ comentario.titulo }}</h3>
-                    Id_comentario:  {{ comentario.id }}<br>
-                    Comentario:     {{ comentario.contenido }}<br>
-
-
-                    {% if app.user == comentario.usuario or app.user.username == "Sabuco" %}
-                        <a href="{{ path('app_comentario_update', {'id' : comentario.id}) }}">Editar&nbsp;</a>
-                        <a href="{{ path('app_comentario_remove', {'id' : comentario.id}) }}">Borrar</a>
-                    {% endif %}
-        {% endfor %}
-
-
-
-<a href="{{ path('app_comentario_add', {'id' : Producto.id })}}">➕  Añadir comentario</a>
-
-</div>
--->
 
 
         <br><br>
